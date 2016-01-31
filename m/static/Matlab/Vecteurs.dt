@@ -1,0 +1,10 @@
+définir un vecteur ligne x avec comme composantes 1, 2 et 3{x = [1 2 3]
+obtenir le premier élément de x{x(1)
+additionner chaque élément de x et y{x+y
+ajouter 3 à chaque composante de x{3+x
+obtenir la transposée de x{x'
+créer un vecteur ligne t de 0 à 10 par pas de 2{t=0:2:10
+faire le produit matriciel de x et y'{x*y'
+faire le produit scalaire de x et y{x.*y
+obtenir un vecteur dont les composantes sont les carrés de celles de x{x.^2
+créer un vecteur v composé de x et y en ligne{v=[x y]

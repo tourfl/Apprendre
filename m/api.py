@@ -1,9 +1,10 @@
 # coding: utf-8
 
 from flask import Flask, request, url_for, render_template, make_response, redirect, session
-import subprocess
-import os
 import datetime
+import os # random number
+
+from glob import glob
 
 import json
 
@@ -31,9 +32,9 @@ def index():
 
 
 
-
-@app.route("/lists", methods=['POST', 'GET'])
-def lists():
+# l for lists
+@app.route("/l/", methods=['POST', 'GET'])
+def files():
     if request.method == 'POST':
 
         pprint(request.headers)
@@ -47,31 +48,16 @@ def lists():
         return ""
 
     elif request.method == 'GET':
-
-        ls = subprocess.Popen(["ls"], stdout=subprocess.PIPE)
-
-        return ls.communicate()
+        return json.dumps(glob('static/*/*.json'))
 
 
 
 
 
-
-
-
-
-@app.route("/lists/<file>")
-def get(file):
-
-    data = None
-
-    with open(file + 'json') as file_data:
-        data = json.load(file_data)
-
-    if data == None:
-        return 'no data man'
-
-    return 'there is data man'
+@app.route("/l/<file>")
+def get_file(file):
+    print("here")
+    return redirect('/static/' + file)
 
 
 
@@ -86,5 +72,5 @@ app.secret_key = os.urandom(24)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host=HOST, port='4000')
 

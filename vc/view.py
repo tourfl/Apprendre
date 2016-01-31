@@ -2,6 +2,10 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 from contextlib import closing
 import requests
+import json
+
+# local imports
+from path import get_dic
 
 
 
@@ -14,8 +18,7 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 HOST = '0.0.0.0'
-PORT = '4000'
-API_URL = '0.0.0.0:5000'
+API_URL = '0.0.0.0:4000'
 
 # create our little application :)
 app = Flask(__name__)
@@ -34,14 +37,16 @@ def index():
 
 
 
-@app.route('/lists', methods=['GET', 'POST'])
+@app.route('/l/', methods=['GET', 'POST'])
 def lists():
     if request.method == 'POST':
         return "nothing to do"
 
-    r = requests.get('http://' + API_URL + '/lists')
+    r = requests.get('http://' + API_URL + '/l/')
 
-    return render_template('lists.html')
+    dic = get_dic(r.json())
+
+    return render_template('lists.html', dic=dic)
 
 
 
@@ -64,7 +69,7 @@ def view(list=list):
 
 @app.route('/post')
 def post():
-    return "nothing to do"
+    return render_template('post.html')
 
 
 
@@ -107,4 +112,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host=HOST, port=PORT)
+    app.run(host=HOST)

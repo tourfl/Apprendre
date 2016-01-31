@@ -1,0 +1,12 @@
+milieu continu{toutes ses propriétés sont des fonctions continues du temps et de l'espace
+Hypothèses permettant de considérer un fluide comme un milieu continu{homogénéité{isotropie{on se place entre l et L
+Viscosité{traduit le frottement entre 2 couches de fluide infiniment proches
+2 types de sollicitations mécaniques exercées par l'extérieur sur un système{forces volumiques{forces surfaciques
+Fluide newtonien{viscosité dynamique constante
+Fluide parfait{viscosité dynamique nulle
+écoulement laminaire{2 particules fluides voisines à un instant donné restent voisines aux instants suivants
+écoulement permanent ou stationnaire{composantes de vitesse indépendantes du temps
+écoulement uniforme{composantes de vitesse indépendantes de l'espace
+ligne de courant{courbe dont la direction tangente en chacun de ses points est la direction du vecteur vitesse
+permettent de décrire le mouvement des fluides newtoniens{équations de Navier-Stokes
+équations de Navier-Stokes{équation de continuité ou équation de bilan de masse{équation de bilan de la quantité de mouvement{équation de bilan de l'énergie

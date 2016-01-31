@@ -6,7 +6,7 @@
 
 En effet, pour l'apprentissage du vocabulaire, lire plusieurs fois une liste ne permet pas d'être certain de connaître le vocabulaire, quoi de mieux que de l'apprendre en se testant de multiples fois ? Fastidieux à l'écrit, cela devient rapide en utilisant un ordinateur.
 
-- Mettre en oeuvre un système struturé comprenant une API (loin d'être indispensable !).
+- Mettre en oeuvre un système struturé comprenant une API minimale (loin d'être indispensable !) et un SGBD.
 
 ## Organisation
 
@@ -16,18 +16,14 @@ En effet, pour l'apprentissage du vocabulaire, lire plusieurs fois une liste ne 
 ```
 README.md
 apprendre.py
-
-./m:
+m/
     README.md
     api.py
-    extreme_sports.json
-    test.json
+    static/
 
-./vc:
+vc/
     README.md
-    index.html
-    layout.html
-    login.html
-    style.css
     view.py
+    templates/
+    static/
 ```

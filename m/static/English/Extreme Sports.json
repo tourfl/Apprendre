@@ -1,10 +1,8 @@
 {
 	"description":{
-		"category": "English Vocabulary",
 		"author":"Raph",
 		"date":"2012-12-03",
-		"number of use":0,
-		"title":"Extreme Sports"
+		"number of use":0
 	},
 	"header":
 	["french", "english"],
@@ -25,7 +23,7 @@
 		["risquer ce qu'il ne faut pas", "to play with danger"],
 		["un comportement à risque", "risk-taking behaviour"],
 		["prendre des risques extrêmes", "to take extreme chances"],
-		["vivre dangereusement", "to live dangerously"],
+		["vivre dangereusexment", "to live dangerously"],
 		["jouer sa vie à quitte ou double", "to live life on the edge"],
 		["le base jump", "Base jumping"],
 		["le saut à l'élastique", "bungee jumping"],
