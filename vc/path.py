@@ -1,8 +1,16 @@
+# coding: utf-8
+
 from os import path
-from pprint import pprint
 
 
-def get_dic(ls):
+def get_len(item):
+
+    (a, b) = item
+
+    return len(b)
+
+
+def get_sorted_list(ls):
     dic = {}
 
     for filepath in ls:
@@ -15,12 +23,16 @@ def get_dic(ls):
 
         dic[dirname].append(filename)
 
-    return dic
+    list = [(k, v) for k,v in dic.items()]
+
+    list = sorted(list, key=get_len, reverse=True)
+
+    return list
 
 
 if __name__ == '__main__':
-    path_list = ["static/English/Air Transport.json", "static/English/Extreme Sports.json"]
-    dic = get_dic(path_list)
+    path_list = ["static/English/Air Transport.json", "static/English/Extreme Sports.json", "static/Divers/US Presidents.json", "static/Portuguais/Colle1.json", "static/Portuguais/Colle2.json", "static/Portuguais/Colle3.json"]
+    list = get_sorted_list(path_list)
 
     print(path_list)
-    pprint(dic)
+    print(list)

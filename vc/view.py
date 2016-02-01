@@ -1,15 +1,10 @@
 # all the imports
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
-from contextlib import closing
+from flask import Flask, request, redirect, url_for, render_template, flash
 import requests
 import json
 
 # local imports
-from path import get_dic
-
-
-
-
+from path import get_sorted_list
 
 
 # configuration
@@ -25,16 +20,9 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 
-
-
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-
 
 
 @app.route('/l/', methods=['GET', 'POST'])
@@ -44,12 +32,9 @@ def lists():
 
     r = requests.get('http://' + API_URL + '/l/')
 
-    dic = get_dic(r.json())
+    list = get_sorted_list(r.json())
 
-    return render_template('lists.html', dic=dic)
-
-
-
+    return render_template('lists.html', list=list)
 
 
 @app.route('/lists/<list>')
@@ -61,21 +46,9 @@ def view(list=list):
     return str(r.status_code)
 
 
-
-
-
-
-
-
 @app.route('/post')
 def post():
     return render_template('post.html')
-
-
-
-
-
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -93,22 +66,11 @@ def login():
     return render_template('login.html', error=error)
 
 
-
-
-
-
-
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('index'))
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
