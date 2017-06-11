@@ -1,0 +1,48 @@
+{
+	"description":{
+		"author":"Raph",
+		"date":"2012-12-03",
+		"number of use":0
+	},
+	"header":
+	["french", "english"],
+	"Vocabulary": 
+	[
+		["avoir le goût du risque", "to like taking risks"],
+		["avoir le goût de l'aventure", "to have a taste for adventure"],
+		["aimer l'aventure", "to be adventurous"],
+		["la prise de risques", "risk taking"],
+		["un preneur de risque", "a risk taker"],
+		["risquer sa vie, sa peau", "to risk one's life, one's neck"],
+		["avoir une montée d'adrénaline", "to get the adrenalin going"],
+		["un amateur de sensations fortes", "a thrill seeker"],
+		["aimer se faire peur", "to like thrills and spills/thrills and chills"],
+		["rechercher le danger", "to push the danger button"],
+		["braver le danger/la mort", "to court danger/death"],
+		["flirter avec la mort", "to flirt with death"],
+		["risquer ce qu'il ne faut pas", "to play with danger"],
+		["un comportement à risque", "risk-taking behaviour"],
+		["prendre des risques extrêmes", "to take extreme chances"],
+		["vivre dangereusexment", "to live dangerously"],
+		["jouer sa vie à quitte ou double", "to live life on the edge"],
+		["le base jump", "Base jumping"],
+		["le saut à l'élastique", "bungee jumping"],
+		["le snowboard", "snowboarding"],
+		["l'escalade de glace", "ice climbing"],
+		["le skateboard", "skateboarding"],
+		["l'escalade", "rock climbing"],
+		["l'alpinisime", "mountaineering"],
+		["le parapente", "paragliding"],
+		["le deltaplane", "hang-gliding"],
+		["la plongée sous-marine", "scuba diving"],
+		["la plongée en apnée", "apnoea diving"],
+		["plonger en apnée", "to dive without a breathing apparatus"],
+		["le rafting", "(whitewater) rafting"],
+		["la descente en rappel", "abseiling (GB)", "rappelling (US)"],
+		["le parachutisme en chute libre", "skydiving"],
+		["la spéléologie", "caving", "potholing"],
+		["le canyoning", "canyoning"],
+		["le ski hors piste", "off-piste skiing"],
+		["le VTT extrême", "extreme biking"]
+	]
+}
