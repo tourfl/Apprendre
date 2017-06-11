@@ -10,20 +10,20 @@ En effet, pour l'apprentissage du vocabulaire, lire plusieurs fois une liste ne 
 
 ## Organisation
 
-- m:    model, i.e. api & database;
-- vc:   view & controller.
+- api:    model, i.e. api & database;
+- view:   view & controller.
 
 ```
 README.md
 apprendre.py
-m/
+api/
     README.md
-    api.py
+    main.py
     static/
 
-vc/
+view/
     README.md
-    view.py
+    main.py
     templates/
     static/
 ```
