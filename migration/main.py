@@ -13,8 +13,8 @@ def main():
 
     for filename in list_fn:
         print(filename)
-        with open(path + filename) as myfile:
-            put_in_db(json.load(myfile))
+        with open(path + filename) as data:
+            put_in_db(json.load(data))
 
 
 def get_filenames():
