@@ -1,8 +1,7 @@
 # Inspired from https://github.com/Leo-G/Flask-SQLALchemy-RESTFUL-API
 
 from flask import Flask
-from marshmallow_jsonapi import Schema, fields
-from marshmallow import validate
+from marshmallow import validate, Schema, fields
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -33,8 +32,8 @@ class Lesson(db.Model, CRUD):
         self.author = author
 
     # why not just a function returning JSON?
-    def to_json():
-        pass
+    def to_json(self):
+        return self.title
 
     def __repr__(self):
         return '<Lesson %r>' % self.title
@@ -43,15 +42,8 @@ class Lesson(db.Model, CRUD):
 class LessonSchema(Schema):
     not_blank = validate.Length(min=1, error='Field cannot be blank')
     id = fields.Integer(dump_only=True)
-    title = fields.String(validate=not_blank)
-    author = fields.String(validate=not_blank)
-
-    def get_top_level_links(self, data, many):
-        if many:
-            self_link = "/lessons/"
-        else:
-            self_link = "/lessons/{}".format(data['id'])
-        return {'self': self_link}
+    title = fields.String(validate=not_blank, required=True)
+    author = fields.String(validate=not_blank, required=True)
 
     class Meta:
         type_ = 'lessons'
