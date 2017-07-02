@@ -1,27 +1,42 @@
 from flask import request, jsonify
 from flask_restful import Resource, Api
-from orm import app, Lesson, LessonSchema
+from orm import app, Lesson, Words
+from schemas import LessonSchema, WordSchema
 from marshmallow import ValidationError
+import json
 import sys
 
 api = Api(app)
 lessonSchema = LessonSchema(strict=True)
+wordSchema = WordSchema(strict=True)
 
 
-class AllLessonsResource(Resource):
+class AllLessonResource(Resource):
     def get(self):
-        lessons_query = Lesson.query.all()
-        results = lessonSchema.dump(lessons_query, many=True).data
+        try:
+            data = json.loads(request.args['data'])
+        except (KeyError, ValueError):
+            data = False
+
+        lesson_query = Lesson.query.all()
+        results = lessonSchema.dump(lesson_query, many=True).data
+
+        if data:
+            results = []
+
         return results
 
     def post(self):
-        form = request.form
+        json_data = request.get_json(force=True)
+        print(json_data, file=sys.stderr)
 
         try:
-            lessonSchema.validate(form)
-            lesson = Lesson(form['title'], form['author'])
+            lesson = lessonSchema.load(json_data['meta']).data
             lesson.add(lesson)
-            return form
+
+            ## TO DO: words stuff!
+
+            return json_data
 
         except ValidationError as err:
             resp = jsonify({"error": err.messages})
@@ -29,15 +44,21 @@ class AllLessonsResource(Resource):
             return resp
 
 
-class LessonResource(Resource):
+class lessonResource(Resource):
     def get(self, title):
+        results = {}
+
         lesson_query = Lesson.query.filter_by(title=title.replace('_', ' ')).first()
-        results = lessonSchema.dump(lesson_query).data
+        results['meta'] = lessonSchema.dump(lesson_query).data
+
+        words_query = Words.query.filter_by(lessonId=results['meta']['id']).all()
+        results['data'] = wordSchema.dump(words_query, many=True).data
+
         return results
 
 
-api.add_resource(AllLessonsResource, '/lessons/')
-api.add_resource(LessonResource, '/lessons/<string:title>')
+api.add_resource(AllLessonResource, '/lessons/')
+api.add_resource(lessonResource, '/lessons/<string:title>')
 
 
 if __name__ == '__main__':

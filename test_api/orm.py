@@ -1,8 +1,10 @@
 # Inspired from https://github.com/Leo-G/Flask-SQLALchemy-RESTFUL-API
 
 from flask import Flask
-from marshmallow import validate, Schema, fields
 from flask.ext.sqlalchemy import SQLAlchemy
+
+MAX_META = 50
+MAX_WORD = 250
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./test.db'
@@ -24,26 +26,31 @@ class CRUD():
 
 class Lesson(db.Model, CRUD):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), nullable=False)
-    author = db.Column(db.String(250))
+    title = db.Column(db.String(MAX_META), nullable=False)
+    author = db.Column(db.String(MAX_META), nullable=False)
+    header = db.Column(db.String(MAX_WORD), nullable=False)
+    nbUse = db.Column(db.Integer)
 
-    def __init__(self, title, author):
+    def __init__(self, wordList):
         self.title = title
         self.author = author
-
-    # why not just a function returning JSON?
-    def to_json(self):
-        return self.title
+        self.header = header
+        self.nbUse = 0
 
     def __repr__(self):
         return '<Lesson %r>' % self.title
 
 
-class LessonSchema(Schema):
-    not_blank = validate.Length(min=1, error='Field cannot be blank')
-    id = fields.Integer(dump_only=True)
-    title = fields.String(validate=not_blank, required=True)
-    author = fields.String(validate=not_blank, required=True)
+class Words(db.Model, CRUD):
+    id = db.Column(db.Integer, primary_key=True)
+    lessonId = db.Column(db.Integer, db.ForeignKey(Lesson.id), nullable=False)
+    key = db.Column(db.String(MAX_WORD), nullable=False)
+    values = db.Column(db.String(MAX_WORD), nullable=False)
 
-    class Meta:
-        type_ = 'lessons'
+    def __init__(self, lessonId, key, values):
+        self.lessonId = lessonId
+        self.key = key
+        self.values = values
+
+    def __repr__(self):
+        return '<Lesson %r>' % self.key
