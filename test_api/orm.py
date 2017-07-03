@@ -31,7 +31,7 @@ class Lesson(db.Model, CRUD):
     header = db.Column(db.String(MAX_WORD), nullable=False)
     nbUse = db.Column(db.Integer)
 
-    def __init__(self, wordList):
+    def __init__(self, title, author, header):
         self.title = title
         self.author = author
         self.header = header

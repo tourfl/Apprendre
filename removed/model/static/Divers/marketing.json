@@ -1,0 +1,22 @@
+{"vocabulary":[["atomicité", "particules élémentaires négligeables devant l'ensemble"],
+["homogénéité des produits", "substituables d'un concurrent à l'autre"],
+["transparence de l'information", "disponibilité de tous les facteurs significatifs du marché"],
+["Hiérarchie des besoins (Maslow)", "physiologie", "sécurité", "appartenance", "estime", "réalisation"],
+["Modèles décisionels", "compensatoire", "conjonctif", "disjonctif", "lexicographique"],
+["modèle conjonctif", "exigences minimales satisfaites pour chaque critère"],
+["modèle disjonctif", "critère le plus important satisfait"],
+["segmentation", "division en sous-groupes homogènes"],
+["4 P", "Product", "Prize", "Place", "Promotion"],
+["produit", "bénéfices perçus par le consommateur"],
+["stratégie pull", "image de marque"],
+["stratégie push", "rabais et promotion", "MDD"],
+["stratégie en terme de prix", "écrémage", "pénétration"],
+["étapes de la vie d'un produit", "introduction", "croissance", "maturité", "déclin"]],
+"description":{
+        "author":"Raph",
+        "date":"2012-12-03",
+        "number of use":0
+    },
+    "header":
+    ["concept", "explications"]
+}

@@ -4,7 +4,6 @@ from orm import app, Lesson, Words
 from schemas import LessonSchema, WordSchema
 from marshmallow import ValidationError
 import json
-import sys
 
 api = Api(app)
 lessonSchema = LessonSchema(strict=True)
@@ -28,13 +27,20 @@ class AllLessonResource(Resource):
 
     def post(self):
         json_data = request.get_json(force=True)
-        print(json_data, file=sys.stderr)
 
         try:
             lesson = lessonSchema.load(json_data['meta']).data
             lesson.add(lesson)
 
-            ## TO DO: words stuff!
+            dataWords = []
+
+            for words in json_data['data']:
+                wordsDict = {'lessonId': lesson.id, 'key': words.pop(0), 'values': words}
+                dataWords.append(wordsDict)
+
+            listWords = wordSchema.load(dataWords, many=True).data
+            for words in listWords:
+                words.add(words)
 
             return json_data
 

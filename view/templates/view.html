@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <h2>
+        <a href={{ url_for('lists') + "#" + dir }}>{{ dir }} / </a>{{ file.replace("_", " ") }}
+        <a class="pure-button pure-button-primary" href="{{ url_for('learn', dir=dir, file=file) }}">Try it!</a>
+    </h2>
+    
+
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+        {% for exp in header %}
+        <th>{{ exp }}</th>
+        {% endfor %}
+    </tr>
+
+    </thead>
+    <tbody>
+    {% for key, value in voc.items() %}
+
+    <tr>
+        <td>{{ key }}</td>
+        <td>
+            <table>
+            {% for exp in value %}
+                <td>{{ exp }}</td>
+            {% endfor %}
+            </table>
+        </td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+<h2>Learned? So, <a class="pure-button pure-button-primary" href="{{ url_for('learn', dir=dir, file=file) }}">Try it!</a></h2>
+
+{% endblock %}

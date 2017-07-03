@@ -16,8 +16,8 @@ def strToList(data, key, many=False):
     return data
 
 
-def listToStr(data, key):
-    listStr = json.dumps(data[key])
+def listToStr(data):
+    listStr = json.dumps(data)
 
     if len(listStr) > MAX_WORD:  # Validation
         raise ValidationError('WORD field cannot be blank or bigger than ' + str(MAX_WORD))
@@ -34,7 +34,7 @@ class LessonSchema(Schema):
 
     @post_load
     def makeLesson(self, data):
-        return Lesson(data['title'], data['author'], listToStr(data, 'header'))
+        return Lesson(data['title'], data['author'], listToStr(data['header']))
 
     @post_dump(None, True)
     def changeHeaderType(self, data, many):  # not a lot of inspiration for the name
@@ -47,13 +47,32 @@ class LessonSchema(Schema):
 class WordSchema(Schema):
     id = fields.Integer(dump_only=True)
     lessonId = fields.Integer()
-    key = fields.List(fields.String)
+    key = fields.String()
     values = fields.List(fields.String)
 
-    @post_load
-    def makeWords(self, data):
-        return Words(data['lessonId'], data['key'], listToStr(data, 'values'))
+    @post_load(None, True)
+    def makeWords(self, data, many):
+
+        if many:
+            dataProcessed = []
+            for words in data:
+                dataProcessed.append(Words(words['lessonId'], words['key'], listToStr(words['values'])))
+        else:
+            dataProcessed = Words(data['lessonId'], data['key'], listToStr(data['values']))
+
+        return dataProcessed
 
     @post_dump(None, True)
     def changeHeaderType(self, data, many):  # not a lot of inspiration for the name
-        return strToList(data, 'values', many)
+
+        data = strToList(data, 'values', many)
+
+        if many:
+            dataProcessed = []
+            for words in data:
+                dataProcessed.append([words['key']] + words['values'])
+
+        else:
+            dataProcessed = [words['key']] + words['values']
+
+        return dataProcessed

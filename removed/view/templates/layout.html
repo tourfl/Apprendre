@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Apprendre</title>
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='pure-min.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='grids-responsive-min.css') }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+
+  <div class="page">
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
+      <a href="{{ url_for('index') }}" class="pure-menu-heading pure-menu-link">Apprendre</a>
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="{{ url_for('lists') }}" class="pure-menu-link">Learn</a></li>
+        <li class="pure-menu-item"><a href="{{ url_for('post') }}" class="pure-menu-link">Post</a></li>
+      </ul>
+    </div>
+
+    {% block body %}{% endblock %}
+
+  </div>
+
+  <footer>
+    <a href="#">about</a> - 2016
+  </footer>
+
+</body>
+</html>

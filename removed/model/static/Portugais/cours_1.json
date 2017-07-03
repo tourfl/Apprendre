@@ -1,0 +1,48 @@
+{
+"vocabulary": [
+    ["carro", "voiture"],
+["sal", "sel"],
+["possível", "possible"],
+["casa", "maison"],
+["dente", "dent"],
+["tia", "tant"],
+["usar", "utiliser"],
+["unha", "ongle"],
+["mau", "mauvais"],
+["xícara", "tasse"],
+["monhã", "matin"],
+["tarde", "après-midi"],
+["noite", "nuit"],
+["sim", "oui"],
+["não", "non"],
+["chá", "thé"],
+["cheio", "rempli"],
+["vermelho", "rouge"],
+["sonho", "rêve"],
+["gueto", "banlieue"],
+["violão", "guitare sèche"],
+["guítarra", "guitare électrique"],
+["queijo", "fromage"],
+["arriscar", "risquer"],
+["nascer", "naître"],
+["avó", "grand-mère"],
+["coração", "cœur"],
+["emoçoes", "émotions"],
+["Où vis-tu ?", "De onde você é ?"],
+["Comment t'appelles-tu ?", "Como você se chama ?"],
+["Comment vas-tu ?", "Como você está ?"],
+["Salut, ça va ?", "Oi, como você está ?"],
+["Que fais-tu dans la vie ?", "Em que você trabalha ?"],
+["Quel âge as-tu ?", "Quantos anos você tem ?"],
+["Combien de frères et soeur as-tu ?", "Quantos irmãos você tem ?"],
+["Mon anniversaire est le 21 janvier.", "O dia de meu aniversário é em 21 de janeiro"],
+["Mon nom est", "Meu nome é"]
+],
+"description":{
+        "author":"Raph",
+        "date":"2012-12-03",
+        "number of use":0
+    },
+    "header":
+    ["portuguese", "french"]
+}
