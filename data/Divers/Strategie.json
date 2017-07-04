@@ -1,8 +1,4 @@
 {
-  "header": [
-    "français",
-    "définition"
-  ],
   "description": {
     "date": "2015-16-11",
     "author": "Raph",
@@ -74,5 +70,9 @@
       "Opportunities",
       "Threats"
     ]
+  ],
+  "header": [
+    "français",
+    "définition"
   ]
 }

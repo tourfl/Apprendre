@@ -1,9 +1,10 @@
 # Inspired from https://github.com/Leo-G/Flask-SQLALchemy-RESTFUL-API
 
 from flask import Flask
-from marshmallow_jsonapi import Schema, fields
-from marshmallow import validate
 from flask.ext.sqlalchemy import SQLAlchemy
+
+MAX_META = 50
+MAX_WORD = 250
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./test.db'
@@ -23,35 +24,47 @@ class CRUD():
         return db.session.commit()
 
 
+class Category(db.Model, CRUD):
+    name = db.Column(db.String(MAX_META), primary_key=True)
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Category %r>' % self.name
+
+
 class Lesson(db.Model, CRUD):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), nullable=False)
-    author = db.Column(db.String(250))
+    title = db.Column(db.String(MAX_META), nullable=False)
+    author = db.Column(db.String(MAX_META), nullable=False)
+    header = db.Column(db.String(MAX_WORD), nullable=False)
+    nbUse = db.Column(db.Integer)
+    date = db.Column(db.DateTime, nullable=False)
+    categoryName = db.Column(db.String(MAX_META), db.ForeignKey(Category.name), nullable=False)
 
-    def __init__(self, title, author):
+    def __init__(self, title, author, header, date, categoryName):
         self.title = title
         self.author = author
-
-    # why not just a function returning JSON?
-    def to_json():
-        pass
+        self.header = header
+        self.nbUse = 0
+        self.date = date
+        self.categoryName = categoryName
 
     def __repr__(self):
         return '<Lesson %r>' % self.title
 
 
-class LessonSchema(Schema):
-    not_blank = validate.Length(min=1, error='Field cannot be blank')
-    id = fields.Integer(dump_only=True)
-    title = fields.Email(validate=not_blank)
-    author = fields.String(validate=not_blank)
+class Words(db.Model, CRUD):
+    id = db.Column(db.Integer, primary_key=True)
+    lessonId = db.Column(db.Integer, db.ForeignKey(Lesson.id), nullable=False)
+    key = db.Column(db.String(MAX_WORD), nullable=False)
+    values = db.Column(db.String(MAX_WORD), nullable=False)
 
-    def get_top_level_links(self, data, many):
-        if many:
-            self_link = "/lessons/"
-        else:
-            self_link = "/lessons/{}".format(data['id'])
-        return {'self': self_link}
+    def __init__(self, lessonId, key, values):
+        self.lessonId = lessonId
+        self.key = key
+        self.values = values
 
-    class Meta:
-        type_ = 'lists'
+    def __repr__(self):
+        return '<Lesson %r>' % self.key

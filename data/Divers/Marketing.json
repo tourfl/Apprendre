@@ -1,14 +1,15 @@
 {
-  "meta": {
+  "description": {
     "date": "2015-16-11",
     "author": "Raph",
-    "number of use": 0,
-    "header": [
+    "number of use": 0
+  },
+  "header": [
     "français",
     "définition"
   ],
-  },
-  "data": [
+
+  "Vocabulary": [
     [
       "atomicité",
       "particules élémentaires négligeables devant l'ensemble"
