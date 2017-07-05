@@ -7,7 +7,7 @@ MAX_META = 50
 MAX_WORD = 250
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./lessons.db'
 db = SQLAlchemy(app)
 
 
