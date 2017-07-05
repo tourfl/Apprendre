@@ -32,14 +32,19 @@ class AllLessonResource(Resource):
         # parsing
         parser = reqparse.RequestParser()
         parser.add_argument('data', type=inputs.boolean, location='args')
+        parser.add_argument('category', location='args')
         args = parser.parse_args()
 
         # lessons query
-        lesson_query = Lesson.query.all()
-        results = lessonSchema.dump(lesson_query, many=True).data
+        if args['category']:
+            lesson_query = Lesson.query.filter_by(categoryName=args['category'])
+        else:
+            lesson_query = Lesson.query
 
-        # if required, data query
-        if 'data' in args.keys() and args['data']:
+        results = lessonSchema.dump(lesson_query.all(), many=True).data
+
+        # if asked, data query
+        if args['data']:
             results = addData(results)
 
         return results
