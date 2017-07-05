@@ -4,6 +4,8 @@ from orm import Category, Lesson, Words, MAX_WORD, MAX_META
 
 meta_size = validate.Length(min=1, max=MAX_META, error='META field cannot be blank or bigger than ' + str(MAX_META))
 word_size = validate.Length(min=1, max=MAX_WORD, error='WORD field cannot be blank or bigger than ' + str(MAX_WORD))
+one_at_least = validate.Length(min=2, error='LIST field cannot be blank or contained a single element')
+not_blank = validate.Length(min=1, error='LIST field cannot be blank')
 
 
 def strToList(data, key, many=False):
@@ -41,7 +43,7 @@ class LessonSchema(Schema):
     title = fields.String(validate=meta_size)
     author = fields.String(validate=meta_size)
     nbUse = fields.Integer()
-    header = fields.List(fields.String)
+    header = fields.List(fields.String(validate=meta_size))
     date = fields.DateTime()
     categoryName = fields.String()
 

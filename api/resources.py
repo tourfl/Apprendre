@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse, inputs
 from orm import app, Category, Lesson, Words
 from schemas import CategorySchema, LessonSchema, WordSchema
 from marshmallow import ValidationError
@@ -13,38 +13,47 @@ lessonSchema = LessonSchema(strict=True)
 wordSchema = WordSchema(strict=True)
 
 
+def addData(results):
+    new_results = []
+
+    for lesson in results:
+        words_query = Words.query.filter_by(lessonId=lesson['id']).all()
+        words = wordSchema.dump(words_query, many=True).data
+
+        lesson['data'] = words
+        new_results.append(lesson)
+
+    return new_results
+
+
 class AllLessonResource(Resource):
     def get(self):
-        try:
-            data = json.loads(request.args['data'])
-        except (KeyError, ValueError):
-            data = False
 
+        # parsing
+        parser = reqparse.RequestParser()
+        parser.add_argument('data', type=inputs.boolean, location='args')
+        args = parser.parse_args()
+
+        # lessons query
         lesson_query = Lesson.query.all()
         results = lessonSchema.dump(lesson_query, many=True).data
 
-        if data:
-            new_results = []
-
-            for lesson in results:
-                words_query = Words.query.filter_by(lessonId=lesson['id']).all()
-                words = wordSchema.dump(words_query, many=True).data
-
-                lesson['data'] = words
-                new_results.append(lesson)
-
-            results = new_results
+        # if required, data query
+        if 'data' in args.keys() and args['data']:
+            results = addData(results)
 
         return results
 
     def post(self):
         json_data = request.get_json(force=True)
-        processedWords = []
+
+        # TO DO: build schema for the whole coming data!
 
         try:
             dataWords = json_data.pop('data', None)
 
             dataCat = {'name': json_data.pop('category', None)}
+
             category = Category.query.filter_by(name=dataCat['name']).first()
 
             if not category:
