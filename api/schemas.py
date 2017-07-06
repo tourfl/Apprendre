@@ -28,6 +28,7 @@ def listToStr(data):
 
 
 class CategorySchema(Schema):
+    id = fields.Integer(dump_only=True)
     name = fields.String(validate=meta_size)
 
     @post_load
@@ -45,11 +46,11 @@ class LessonSchema(Schema):
     nbUse = fields.Integer()
     header = fields.List(fields.String(validate=meta_size))
     date = fields.DateTime()
-    categoryName = fields.String()
+    category = fields.String()
 
     @post_load
     def makeLesson(self, data):
-        return Lesson(data['title'], data['author'], listToStr(data['header']), data['date'], data['categoryName'])
+        return Lesson(data['title'], data['author'], listToStr(data['header']), data['date'], data['category'])
 
     @post_dump(None, True)
     def changeHeaderType(self, data, many):  # not a lot of inspiration for the name

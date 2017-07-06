@@ -25,10 +25,11 @@ class CRUD():
 
 
 class Category(db.Model, CRUD):
-    name = db.Column(db.String(MAX_META), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(MAX_META), unique=True)
 
     def __init__(self, name):
-        self.name = name
+        self.name = name  # DANGER because of spaces?
 
     def __repr__(self):
         return '<Category %r>' % self.name
@@ -41,7 +42,7 @@ class Lesson(db.Model, CRUD):
     header = db.Column(db.String(MAX_WORD), nullable=False)
     nbUse = db.Column(db.Integer)
     date = db.Column(db.DateTime, nullable=False)
-    categoryName = db.Column(db.String(MAX_META), db.ForeignKey(Category.name), nullable=False)
+    category = db.Column(db.String(MAX_META), db.ForeignKey(Category.name), nullable=False)
 
     def __init__(self, title, author, header, date, categoryName):
         self.title = title
@@ -49,7 +50,7 @@ class Lesson(db.Model, CRUD):
         self.header = header
         self.nbUse = 0
         self.date = date
-        self.categoryName = categoryName
+        self.category = categoryName
 
     def __repr__(self):
         return '<Lesson %r>' % self.title
