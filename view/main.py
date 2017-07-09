@@ -4,7 +4,7 @@ import requests
 import json
 
 # local imports
-from path import get_sorted_list
+from path import mylen
 
 
 # configuration
@@ -13,7 +13,8 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 HOST = '0.0.0.0'
-API_URL = '0.0.0.0:4000'
+PORT = 4000
+API_URL = '127.0.0.1:5000'
 
 # create our little application :)
 app = Flask(__name__)
@@ -25,25 +26,33 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/l/', methods=['GET', 'POST'])
+@app.route('/learn/', methods=['GET', 'POST'])
 def lists():
     if request.method == 'POST':
         return "nothing to do"
 
-    r = requests.get('http://' + API_URL + '/l/')
+    data = requests.get('http://' + API_URL + '/categories/', params={'show': 'more'}).json()
 
-    list = get_sorted_list(r.json())
+    data.sort(key=mylen, reverse=True)
 
-    return render_template('lists.html', list=list)
+    return render_template('lists.html', data=data)
 
 
-@app.route('/lists/<list>')
-def view(list=list):
+@app.route('/view/<lessonId>')
+def view(lessonId):
+    data = requests.get('http://' + API_URL + '/lessons/' + lessonId).json()
+
+    return render_template('view.html', data=data)
+
+
+@app.route('/learn/<lessonId>')
+def learn(lessonId):
     try:
-        r = requests.get('http://'+ API_URL + '/listes/' + list + '.json')
+        data = requests.get('http://' + API_URL + '/lessons/' + lessonId).json()
     except:
         pass
-    return str(r.status_code)
+
+    return render_template('learn.html', data=data, dumps=json.dumps)
 
 
 @app.route('/post')
@@ -74,4 +83,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host=HOST)
+    app.run(host=HOST, port=PORT, debug=True)

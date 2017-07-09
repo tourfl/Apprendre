@@ -10,6 +10,10 @@ def get_len(item):
     return len(b)
 
 
+def mylen(dic):
+    return len(dic['lessons'])
+
+
 def get_sorted_list(ls):
     dic = {}
 
@@ -23,7 +27,7 @@ def get_sorted_list(ls):
 
         dic[dirname].append(filename)
 
-    list = [(k, v) for k,v in dic.items()]
+    list = [(k, v) for k, v in dic.items()]
 
     list = sorted(list, key=get_len, reverse=True)
 

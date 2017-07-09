@@ -3,19 +3,19 @@
 
 <div class="pure-g">
 
-    {% for category,l in list %}
+    {% for category in data %}
 
     <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
 
-        <h2 id="{{ category }}">{{ category }}</h2>
+        <h2 id="{{ category }}">{{ category['name'] }}</h2>
 
         <ul>
 
-            {% for list_name in l %}
+            {% for lesson in category['lessons'] %}
 
             <li>
-                <a href="{{ url_for('view', dir=category, file=list_name) }}">{{ list_name.replace("_", " ") }}</a>
-                <small><a href="{{ url_for('learn', dir=category, file=list_name) }}">Direct test!</a></small>
+                <a href="{{ url_for('view', lessonId=lesson['id']) }}">{{ lesson['title'] }}</a>
+                <small><a href="{{ url_for('learn', lessonId=lesson['id']) }}">Direct test!</a></small>
             </li>
 
             {% endfor %}
