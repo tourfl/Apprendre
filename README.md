@@ -2,6 +2,10 @@
 
 Python 3
 
+## Still **TO DO**
+
+see [view README](https://github.com/tourfl/Apprendre/tree/master/view/#readme)
+
 ## Objectifs
 
 - Développer une application permettant d'apprendre les fondamentaux d'une langue (vocabulaire, expression, structures) de la manière la plus efficace possible.
@@ -39,3 +43,4 @@ inspired from [Techarena51](https://techarena51.com/blog/buidling-a-database-dri
 - ORM: **SQLAlchemy**
 - API: **Flask-RESTful**
 - JSON validator: **Marshmallow**
+- template renderer: **Jinja2**
