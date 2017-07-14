@@ -562,7 +562,7 @@ table {
   display:block;
   width:100%;
   padding:.3em 0;
-  margin-bottom:.3em;
+  margin-bottom: 0;
   color:#333;
   border-bottom:1px solid #e5e5e5
 }
@@ -607,10 +607,6 @@ table {
 .pure-form input.pure-input-rounded,.pure-form .pure-input-rounded {
   border-radius:2em;
   padding:.5em 1em
-}
-
-.pure-form .pure-group fieldset {
-  margin-bottom:10px
 }
 
 .pure-form .pure-group input,.pure-form .pure-group textarea {
@@ -684,11 +680,11 @@ table {
 
 @media only screen and (max-width :480px) {
   .pure-form button[type=submit] {
-    margin:.7em 0 0
+    margin:0 0 0
   }
 
   .pure-form input:not([type]),.pure-form input[type=text],.pure-form input[type=password],.pure-form input[type=email],.pure-form input[type=url],.pure-form input[type=date],.pure-form input[type=month],.pure-form input[type=time],.pure-form input[type=datetime],.pure-form input[type=datetime-local],.pure-form input[type=week],.pure-form input[type=number],.pure-form input[type=search],.pure-form input[type=tel],.pure-form input[type=color],.pure-form label {
-    margin-bottom:.3em;
+    margin-bottom:0;
     display:block
   }
 
@@ -950,27 +946,3 @@ table {
 .pure-table-horizontal tbody>tr:last-child>td {
   border-bottom-width:0
 }
-
-/* Raph's add */
-
-.learn-buttons {
-  margin: 0;
-  color: #fff;
-  float: left;
-  width: 100%;
-}
-
-.next-button {
-  background-color: rgb(223, 117, 20);
-  margin: 0.3em 0 0 0;
-}
-
-@media screen and (min-width: 35.5em) {
-  .learn-buttons {
-    margin: 0.3em 0 0 0.3em;
-    color: #fff;
-    width: 98%;
-    float: right; 
-  }
-}
-

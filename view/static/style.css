@@ -108,7 +108,6 @@ html , body  {
 .page {
   height:100%;
   height:auto!important;
-  width: 99%;
   margin: auto;
   min-height:87%;
   position:relative;
@@ -129,41 +128,75 @@ footer {
   width: 100%;
 }
 
-.keyword {
-  background: #eee;
-  padding: 0.3em 1em;
+.quizz {
+  background-color: #eee;
+  border-radius: 5px;
+  margin: 20px auto 0 auto;
+  padding: 10px;
+}
+
+#keyword {
+  background: #fff;
+  padding: 5px;
   border-radius: 3px;
+  margin-bottom: 7px;
 }
 
-.myform {
-  margin-top: 4em;
+.quizz-form {
+  width: 100%;
 }
 
-.mybuttons {
-  position: relative;
-  min-height: 5.5em;
-/*  background-color: #eee;
-*/}
-
-.mybutt {
-  position: absolute;
-  right: 0;
-/*  background-color: #f3e;*/
-  bottom: 0.9em;
+input.learn-input {
+  width: 100%;
 }
 
-.last-container {
-  padding: 0.3em 1em;
+.quizz fieldset {
+  margin-bottom: 7px;
+  padding: 0;
+}
+
+.quizz input.learn-input:focus {
+  border-color: rgb(223, 117, 20);
+}
+
+.learn-buttons-container {
+  width: 200px;
+  margin: 0 auto 0 auto;
+}
+
+button.learn-button {
+  width: 100px;
+}
+
+button.pass-button {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.pure-form button.next-button[type=submit] {
+  background-color: rgb(223, 117, 20);
+  color: #fff;
+}
+
+#last-container {
+  padding: 5px;
   border-radius: 3px;
+  margin-top: 8px;
   display: none;
 }
 
-@media screen and (min-width: 35.5em) {
+@media screen and (min-height: 500px) {
+  #last-container {
+    margin-top: 55px;
+  }
+}
+
+@media screen and (min-width: 652px) {
   .page {
     width: 90%;
   }
 
-  .mybuttons {
-    min-height: 5.8em;
+  .quizz {
+    width: 600px;
   }
 }

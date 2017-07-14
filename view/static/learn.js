@@ -117,13 +117,22 @@ function setLabel (keyword) {
 function setBoxes (nb) {
   var i;
 
-  for (i = 0; i < nb; i++) {
-    var box = document.getElementById('box' + i);
+  if(nb === 0) {
+    error('any word to test...');
+  }
+  // TO DO: if a single box, do not use a group of boxes
+
+  var box = document.getElementById('box' + 0);
+  box.style.display = 'block';
+  box.value = "";
+
+  for (i = NB_BOXES-1; i > NB_BOXES-nb; i--) {
+    box = document.getElementById('box' + i);
     box.style.display = 'block';
     box.value = "";
   }
 
-  for (i = nb; i < NB_BOXES; i++) {
+  for (i = 1; i < NB_BOXES+1-nb; i++) {
     document.getElementById('box' + i).style.display = 'none';
   }
 }
